@@ -1,0 +1,36 @@
+
+h1,h3{
+    letter-spacing: 2px;
+}
+
+.link{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    font-weight: bold;
+    border: solid 1px black;
+    border-radius: 20px;
+    width: 25%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+.box-moves{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    list-style-type: none;
+}
+
+.box-types{
+    display: flex;
+
+}
+
+.box-abilites{
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+}

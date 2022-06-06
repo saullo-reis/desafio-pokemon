@@ -1,0 +1,9 @@
+button{
+    width:35px;
+    background-size: cover;
+    height: 35px;
+    float: right;
+    margin-right: 30px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}

@@ -1,0 +1,37 @@
+
+@font-face {
+    font-family: 'pokemon-font';
+    src: url(../../../assets/font/MilkyNice-Clean.ttf) FORMAT('truetype');
+}
+
+*{
+    font-family: 'pokemon-font', sans-serif;
+    padding:0;
+    margin:0;
+
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a:hover{
+    transform:scale(1.07);
+    z-index:2;
+}
+.button:hover{
+    transform:scale(1.07);
+    z-index:2;
+}
+
+a{
+    text-decoration: none;
+}
+
+.container a
+
+.box-pokemon img{
+    width: 50%;
+}
