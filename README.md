@@ -1,7 +1,7 @@
-# [<img src="./src/assets/img/pokemon.png">]
+# <img src="./src/assets/img/pokemon.png">
 
 ## GIF do projeto inteiro.
-<img src="./src/assets/img/projeto.gif">]
+<img src="./src/assets/img/projeto.gif">
 
 ## Como utilizar
 
