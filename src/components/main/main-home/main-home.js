@@ -40,17 +40,18 @@ const Pokemons = () => {
         >
           {pokes.pokemons.map((pokemon, index) => {
             return (
-              <Link key={index} to={`/details/${pokemon.name}`}>
-                <Item className="box-pokemon"
-                  style={{
-                    color: theme.color,
-                    backgroundColor: theme.backgroundBox,
-                  }}
-                >
-                  <img src={pokemon.sprites.front_default} />
-                  <H1 style={{ color: theme.color }}>{pokemon.name}</H1>
-                </Item>
-              </Link>
+                <li className="box-pokemon" key={index} >
+                  <Link to={`/details/${pokemon.name}`}>
+                    <Item className="division"
+                      style={{
+                        color: theme.color,
+                        backgroundColor: theme.backgroundBox,
+                    }}>
+                      <img src={pokemon.sprites.front_default} />
+                      <H1 style={{ color: theme.color }}>{pokemon.name}</H1>
+                    </Item>
+                  </Link>
+                </li>
             );
           })}
         </Box>
@@ -71,11 +72,10 @@ const H1 = styled.h1`
   text-decoration: none;
   font-size: 85%;
 `;
-const Item = styled.li`
+const Item = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
   border-radius: 10px;
   box-shadow: 2px 2px 2px black;
   border: solid gray 0.2px;

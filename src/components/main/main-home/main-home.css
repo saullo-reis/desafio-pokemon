@@ -17,7 +17,11 @@ body{
     align-items: center;
 }
 
-a:hover{
+.division{
+    width: 200px;
+}
+
+.division:hover{
     transform:scale(1.07);
     z-index:2;
 }
@@ -30,8 +34,24 @@ a{
     text-decoration: none;
 }
 
-.container a
+li{
+    list-style-type: none;
+}
 
 .box-pokemon img{
-    width: 50%;
+    width: 100%;
+}
+
+@media(max-width: 720px){
+    .division{
+        display: flex;
+        flex-direction: column;
+        width: 100px;
+    }
+}
+
+@media(max-width: 720px){
+    .division{
+        width: 50px;
+    }
 }
