@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import logo from "../../assets/img/pokemon.png";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { ThemeTogglerButton } from "../theme-toggler-button/theme-toggler-button";
 import { ThemeContext } from "../../contexts/theme-context";
 
@@ -25,6 +25,12 @@ const Headers = styled.section`
   justify-content: space-between;
   align-items: center;
   height: 100px;
+
+  button:hover{
+    transform:scale(1.07);
+    z-index:2;
+    cursor:pointer;
+  }
 
 `;
 const Logo = styled.img`

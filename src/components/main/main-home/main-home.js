@@ -1,23 +1,28 @@
 import { getApiPokemon, getApiNames } from "../../../services/pokemonsApi";
 import { useState, useEffect, useContext } from "react";
-import "./main-home.css";
-import styled, { css } from "styled-components";
+import "./mediaquery.css";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../../../contexts/theme-context";
 
 const Pokemons = () => {
   let limit = 10;
   const [count, setCount] = useState(10);
+  const [offset, setOffset] = useState(0)
   const [pokes, setPokes] = useState({
     pokemons: [],
   });
 
   async function showMore() {
     setCount(count + limit);
+    setOffset(offset + limit);
   }
+
+
+  console.log(pokes.pokemons)
   useEffect(() => {
     const fetchData = async () => {
-      const names = await getApiNames(count);
+      const names = await getApiNames(count, offset);
       const pokemons = names.map(async (name) => {
         const response = await getApiPokemon(name);
         return response;
@@ -28,19 +33,19 @@ const Pokemons = () => {
       });
     };
     fetchData();
-  }, [count]);
+  }, [count, offset]);
 
   const { theme } = useContext(ThemeContext);
 
   return (
     <Home style={{ color: theme.color, backgroundColor: theme.backgroundBox }}>
       {
-        <Box className="container"
+        <Container className="container"
           style={{ color: theme.colorBox, backgroundColor: theme.background }}
         >
           {pokes.pokemons.map((pokemon, index) => {
             return (
-                <li className="box-pokemon" key={index} >
+                <Box className="box-pokemon" key={index} >
                   <Link to={`/details/${pokemon.name}`}>
                     <Item className="division"
                       style={{
@@ -51,10 +56,10 @@ const Pokemons = () => {
                       <H1 style={{ color: theme.color }}>{pokemon.name}</H1>
                     </Item>
                   </Link>
-                </li>
+                </Box>
             );
           })}
-        </Box>
+        </Container>
       }
       <Button
         style={{ color: theme.color, backgroundColor: theme.background }}
@@ -84,9 +89,20 @@ const Item = styled.div`
   margin: 30px;
   list-style-type: none;
   cursor: pointer;
+  width:200px;
+
+  img{
+    width:100%;
+  }
 `;
 
-const Box = styled.ul`
+const Box= styled.li`
+  a{
+    text-decoration: none;
+  }
+`
+
+const Container = styled.ul`
   box-shadow: 2px 2px 2px black;
   width: 50%;
   display: flex;
@@ -96,7 +112,16 @@ const Box = styled.ul`
   padding:0;
   border-radius: 20px;
   border: black solid 0.1px;
-  margin-top:20px
+  margin-top:20px;
+  
+  li{
+    list-style-type: none;
+  }
+
+  li:hover{
+    transform:scale(1.07);
+    z-index:2;
+  }
 `;
 
 const Button = styled.button`
@@ -119,6 +144,11 @@ const Home = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  button:hover{
+    transform:scale(1.07);
+    z-index:2;
+  }
 `;
 
 export default Pokemons;

@@ -1,9 +1,9 @@
-import PokemonDetails from "../../../main-details/main-details";
+import MainDetails from "../../../main-details/main-details";
 
 export const Post = () => {
   return (
     <>
-      <PokemonDetails />
+      <MainDetails />
     </>
   );
 };

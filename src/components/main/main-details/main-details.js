@@ -1,13 +1,12 @@
 import { useState, useEffect,useContext } from "react";
 import { getApiPokemon, getAbilities } from "../../../services/pokemonsApi";
 import { useParams } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
-import "./main.details.css";
 import { ThemeContext } from "../../../contexts/theme-context";
 
 
-const PokemonDetails = () => {
+const MainDetails = () => {
   const [poke, setPoke] = useState({});
   const [photo, setPhoto] = useState({});
   const [pokemonData, setPokemonData] = useState({
@@ -58,7 +57,7 @@ const PokemonDetails = () => {
           <Perfil style={{color: theme.color, backgroundColor: theme.backgroundBox}}>
             <H1>{poke.name}</H1>
             <Img src={photo} />
-            <Box className="box-types">
+            <BoxTypes className="box-types">
               {pokemonData.types.map((type, index) => {
                 return (
                   <li key={index}>
@@ -66,20 +65,20 @@ const PokemonDetails = () => {
                   </li>
                 );
               })}
-            </Box>
+            </BoxTypes>
           </Perfil>
           <Ability className="ability" style={{color: theme.color, backgroundColor: theme.backgroundBox}}>
-            <h1>Abilities</h1>
+            <H1>Abilities</H1>
             <BoxAbilities className="box-abilities">
               {abilityDesc.abilitiesDescs.map((descs, index) => {
                 return (
                   <Ability key={index}>
-                    <H1>{descs.name}</H1>
-                    <h3>
+                    <h1>{descs.name}</h1>
+                    <h5>
                       {descs.effect_entries[0].language.name === "en"
                         ? descs.effect_entries[0].effect
                         : descs.effect_entries[1].effect}
-                    </h3>
+                    </h5>
                   </Ability>
                 );
               })}
@@ -87,16 +86,16 @@ const PokemonDetails = () => {
           </Ability>
         </Main>
         <Moves className="moves" style={{color: theme.color, backgroundColor: theme.backgroundBox}}>
-          <h1>Moves</h1>
-          <Box className="box-moves">
+          <H1>Moves</H1>
+          <BoxMoves className="box-moves">
             {pokemonData.moves.map((moves, index) => {
               return (
                 <Move key={index} className="moves">
-                  <h3>{moves.move.name}</h3>
+                  <h5>{moves.move.name}</h5>
                 </Move>
               );
             })}
-          </Box>
+          </BoxMoves>
         </Moves>
       </Content>
       <Link className="link" to={"/"} style={{color: theme.color, backgroundColor: theme.backgroundBox}}>
@@ -114,6 +113,25 @@ const Sections = styled.section`
   align-items: center;
   border-left: solid 1px black;
   border-right: solid 1px black;
+
+  a{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    font-weight: bold;
+    border: solid 1px black;
+    border-radius: 20px;
+    width: 25%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-decoration: none;
+  }
+  a:hover{
+    transform:scale(1.07);
+    z-index:2;
+  }
+  
 `;
 
 const NameType = styled.h3`
@@ -168,21 +186,35 @@ const Content = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const BoxAbilities = styled.ul`
   list-style-type: none;
   margin: 10px;
-  padding: 0px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 `;
 
-const Box = styled.ul`
+const BoxMoves = styled.ul`
   list-style-type: none;
   margin: 10px;
-  padding: 0px;
+  padding: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  list-style-type: none;
 `;
+
+const BoxTypes = styled.ul`
+  list-style-type: none;
+  margin: 10px;
+  padding: 20px;
+  display: flex;
+`;
+
 
 const Img = styled.img`
   width: 200px;
@@ -191,6 +223,8 @@ const Img = styled.img`
 const H1 = styled.h1`
   font-size: 50px;
   letter-spacing: 5px;
+  padding-top:20px;
+  color:black;
 `;
 
-export default PokemonDetails;
+export default MainDetails;

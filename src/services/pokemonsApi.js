@@ -1,7 +1,7 @@
 const url = "https://pokeapi.co/api/v2/pokemon";
 
-export async function getApiNames(limit) {
-  const response = await fetch(`${url}?limit=${limit}&offset=0`);
+export async function getApiNames(limit, offset) {
+  const response = await fetch(`${url}?limit=${limit}&o0ffset=${offset}}`);
   const json = await response.json();
   const names = json.results.map((result) => {
     return result.name;

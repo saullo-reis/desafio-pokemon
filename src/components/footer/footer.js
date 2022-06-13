@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { ThemeContext } from "../../contexts/theme-context";
 
 const Footer = () => {
@@ -37,6 +37,10 @@ const Footers = styled.section`
 const A = styled.a`
   text-decoration: none;
   font-weight: bold;
+  &:hover{
+    transform:scale(1.07);
+    z-index:2;
+  }
 `;
 
 export default Footer;

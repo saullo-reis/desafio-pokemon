@@ -1,0 +1,14 @@
+
+@media(max-width: 720px){
+    .division{
+        display: flex;
+        flex-direction: column;
+        width: 100px;
+    }
+}
+
+@media(max-width: 720px){
+    .division{
+        width: 50px;
+    }
+}
