@@ -7,33 +7,27 @@ import { ThemeContext } from "../../../contexts/theme-context";
 
 const Pokemons = () => {
   let limit = 10;
-  const [count, setCount] = useState(10);
   const [offset, setOffset] = useState(0)
-  const [pokes, setPokes] = useState({
-    pokemons: [],
-  });
+  const [pokes, setPokes] = useState([]);
 
   async function showMore() {
-    setCount(count + limit);
     setOffset(offset + limit);
   }
 
-
-  console.log(pokes.pokemons)
+  console.log(offset)
   useEffect(() => {
     const fetchData = async () => {
-      const names = await getApiNames(count, offset);
+      const names = await getApiNames(offset);
       const pokemons = names.map(async (name) => {
         const response = await getApiPokemon(name);
         return response;
       });
       const resolved = await Promise.all(pokemons);
-      setPokes({
-        pokemons: resolved,
-      });
+      console.log('resolved',resolved)
+      setPokes([...pokes, ...resolved]);
     };
     fetchData();
-  }, [count, offset]);
+  }, [offset]);
 
   const { theme } = useContext(ThemeContext);
 
@@ -43,7 +37,7 @@ const Pokemons = () => {
         <Container className="container"
           style={{ color: theme.colorBox, backgroundColor: theme.background }}
         >
-          {pokes.pokemons.map((pokemon, index) => {
+          {pokes.map((pokemon, index) => {
             return (
                 <Box className="box-pokemon" key={index} >
                   <Link to={`/details/${pokemon.name}`}>
