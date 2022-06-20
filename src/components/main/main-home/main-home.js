@@ -14,7 +14,6 @@ const Pokemons = () => {
     setOffset(offset + limit);
   }
 
-  console.log(offset)
   useEffect(() => {
     const fetchData = async () => {
       const names = await getApiNames(offset);
@@ -23,7 +22,6 @@ const Pokemons = () => {
         return response;
       });
       const resolved = await Promise.all(pokemons);
-      console.log('resolved',resolved)
       setPokes([...pokes, ...resolved]);
     };
     fetchData();
